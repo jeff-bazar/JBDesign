@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeff A. Bazar — JB Design</title>
+<meta name="description" content="Jeff A. Bazar — Graphic Design, Digital Product Design, Front-End Development & Administrative Support.">
+<link rel="icon" type="image/png" href="JB Design Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" cro ssorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050509;
+    --bg-panel:#0b0b13;
+    --bg-panel-2:#0f0f1a;
+    --purple:#9333ea;
+    --purple-bright:#a855f7;
+    --purple-deep:#4c1d95;
+    --blue:#3b5bfb;
+    --blue-bright:#5b7cff;
+    --blue-deep:#152a8f;
+    --white:#f5f5fb;
+    --muted:#9a9ab4;
+    --muted-dim:#6b6b84;
+    --line:rgba(245,245,251,0.09);
+    --grad-diag: linear-gradient(115deg, var(--purple) 0%, var(--purple-bright) 30%, #6d5df0 50%, var(--blue-bright) 70%, var(--blue) 100%);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Sora',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{display:block;max-width:100%;}
+
+  ::selection{background:var(--purple);color:#fff;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- Faceted background canvas ---------- */
+  #facets{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.55;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:20px 0;
+    transition:background .35s ease, border-color .35s ease, padding .35s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(5,5,9,0.82);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:34px;width:auto;}
+  .brand-text{font-family:'Sora',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.04em;}
+  .brand-text span{background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .nav-links{display:flex;gap:36px;align-items:center;}
+  .nav-links a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--muted);
+    position:relative;
+    padding-bottom:4px;
+    transition:color .25s ease;
+  }
+  .nav-links a:hover{color:var(--white);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;height:1px;width:0;
+    background:var(--grad-diag);transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;
+    padding:9px 18px;border-radius:2px;
+    background:var(--grad-diag);color:#fff;
+    border:none;
+  }
+  .nav-toolkit-btn{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;
+    padding:8px 17px;border-radius:2px;
+    border:1px solid var(--line);color:var(--white);
+    transition:border-color .25s ease, color .25s ease;
+  }
+  .nav-toolkit-btn:hover{border-color:var(--purple-bright);color:var(--purple-bright);}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:60;}
+  .nav-toggle span{width:22px;height:2px;background:var(--white);display:block;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;z-index:1;
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding-top:110px;padding-bottom:60px;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;align-items:center;width:100%;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;
+    color:var(--purple-bright);text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;
+  }
+  .eyebrow::before{content:'';width:26px;height:1px;background:var(--grad-diag);}
+  .hero h1{
+    font-size:clamp(2.6rem, 5.2vw, 4.4rem);
+    font-weight:700;line-height:1.05;letter-spacing:-0.01em;
+    margin-bottom:26px;
+  }
+  .hero h1 .accent{
+    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lede{
+    font-size:17px;line-height:1.7;color:var(--muted);max-width:480px;margin-bottom:36px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:52px;}
+  .btn{
+    font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.05em;
+    padding:14px 26px;border-radius:2px;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary{background:var(--grad-diag);color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(147,51,234,0.55);}
+  .btn-ghost{border:1px solid var(--line);color:var(--white);}
+  .btn-ghost:hover{border-color:var(--purple-bright);transform:translateY(-2px);}
+  .hero-meta{display:flex;gap:36px;flex-wrap:wrap;}
+  .hero-meta div{border-left:2px solid;border-image:var(--grad-diag) 1;padding-left:14px;}
+  .hero-meta .num{font-family:'Sora',sans-serif;font-weight:700;font-size:22px;display:block;}
+  .hero-meta .label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-dim);text-transform:uppercase;letter-spacing:0.06em;}
+
+  .hero-portrait{position:relative;justify-self:center;}
+  .portrait-frame{
+    position:relative;width:340px;max-width:100%;
+  }
+  .portrait-frame .clip{
+    width:100%;aspect-ratio:1/1.12;
+    clip-path:polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 22% 100%, 0% 78%);
+    overflow:hidden;
+    background:var(--bg-panel-2);
+    position:relative;
+  }
+  .portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(0.15) contrast(1.05);}
+  .portrait-frame .ring{
+    position:absolute;inset:-14px;
+    clip-path:polygon(0% 0%, 78% 0%, 100% 22%, 100% 100%, 22% 100%, 0% 78%);
+    border:1.5px solid transparent;
+    background:linear-gradient(var(--bg),var(--bg)) padding-box, var(--grad-diag) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events:none;
+  }
+  .portrait-tag{
+    position:absolute;bottom:-18px;left:-18px;
+    background:var(--bg-panel);border:1px solid var(--line);
+    padding:10px 16px;border-radius:2px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+    display:flex;align-items:center;gap:8px;
+  }
+  .portrait-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--purple-bright);box-shadow:0 0 10px var(--purple-bright);}
+
+  /* ---------- Section shell ---------- */
+  section{position:relative;z-index:1;padding:120px 0;}
+  .section-head{margin-bottom:56px;max-width:640px;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem);font-weight:700;letter-spacing:-0.01em;line-height:1.15;}
+  .section-head p{color:var(--muted);margin-top:16px;font-size:15.5px;line-height:1.7;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--bg-panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;align-items:center;}
+  .about-visual{
+    position:relative;
+    aspect-ratio:1/1;
+    background:var(--grad-diag);
+    clip-path:polygon(0 0, 100% 0, 100% 68%, 68% 100%, 0 100%);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    padding:14%;
+  }
+  .about-logo{
+    width:100%;height:100%;object-fit:contain;
+    filter:drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+  }
+  .about-copy p{color:var(--muted);font-size:16px;line-height:1.85;margin-bottom:20px;}
+  .about-copy strong{color:var(--white);font-weight:600;}
+  .about-facts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+  .fact{
+    background:var(--bg-panel-2);border:1px solid var(--line);padding:18px 20px;border-radius:2px;
+  }
+  .fact .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted-dim);display:block;margin-bottom:6px;}
+  .fact .v{font-family:'Sora',sans-serif;font-weight:600;font-size:14.5px;}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .service-card{
+    background:var(--bg);padding:36px 28px;position:relative;overflow:hidden;
+    transition:background .3s ease;
+  }
+  .service-card:hover{background:var(--bg-panel-2);}
+  .service-card .bar{width:38px;height:3px;margin-bottom:26px;border-radius:2px;}
+  .service-card .icon{margin-bottom:22px;width:42px;height:42px;}
+  .service-card h3{font-size:17px;font-weight:600;margin-bottom:12px;letter-spacing:-0.01em;}
+  .service-card p{font-size:13.8px;color:var(--muted);line-height:1.7;}
+  .service-card .tag{
+    position:absolute;top:24px;right:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-dim);
+  }
+
+  /* ---------- Skills ---------- */
+  .skills{background:var(--bg-panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  .skill-group h4{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-bright);margin-bottom:18px;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    padding:9px 15px;border:1px solid var(--line);border-radius:2px;color:var(--muted);
+    transition:border-color .25s ease, color .25s ease, transform .25s ease;
+  }
+  .chip:hover{border-color:var(--blue-bright);color:var(--white);transform:translateY(-2px);}
+
+  /* ---------- Process ---------- */
+  .process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .process-step{position:relative;padding-left:0;}
+  .process-step .step-num{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:38px;
+    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent;
+    display:block;margin-bottom:14px;
+  }
+  .process-step h4{font-size:15.5px;font-weight:600;margin-bottom:10px;}
+  .process-step p{font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+  /* ---------- Contact ---------- */
+  /* ---------- VA Services sub-grid ---------- */
+  .va-services{margin-top:56px;}
+  .va-services-head{display:flex;align-items:center;gap:14px;margin-bottom:26px;}
+  .va-services-head h3{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+  .va-services-head::after{content:'';flex:1;height:1px;background:var(--line);}
+  .va-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .va-item{
+    background:var(--bg);padding:22px 20px;display:flex;align-items:center;gap:14px;
+    transition:background .25s ease;
+  }
+  .va-item:hover{background:var(--bg-panel-2);}
+  .va-item .va-ico{
+    width:36px;height:36px;border-radius:2px;flex-shrink:0;
+    background:var(--bg-panel-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .va-item .va-ico svg{width:18px;height:18px;}
+  .va-item span.label{font-size:13.5px;font-weight:500;}
+
+  /* ---------- Portfolio ---------- */
+  .placeholder-note{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em;
+    color:var(--muted-dim);background:var(--bg-panel-2);border:1px dashed var(--line);
+    padding:8px 14px;border-radius:2px;margin-bottom:44px;
+  }
+  .placeholder-note .dot{width:6px;height:6px;border-radius:50%;background:var(--purple-bright);flex-shrink:0;}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .portfolio-card{
+    background:var(--bg-panel-2);border:1px solid var(--line);border-radius:2px;overflow:hidden;
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .portfolio-card:hover{transform:translateY(-4px);border-color:var(--purple-bright);}
+  .portfolio-thumb{
+    aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .portfolio-thumb::after{
+    content:'MOCK / SAMPLE';
+    position:absolute;top:12px;right:12px;
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.08em;
+    color:rgba(255,255,255,0.85);background:rgba(5,5,9,0.45);
+    padding:5px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.2);
+  }
+  .portfolio-thumb svg{width:44px;height:44px;opacity:0.85;position:relative;z-index:1;}
+  .portfolio-body{padding:22px 24px 26px;}
+  .portfolio-body .cat{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-bright);display:block;margin-bottom:10px;}
+  .portfolio-body h3{font-size:16px;font-weight:600;margin-bottom:10px;}
+  .portfolio-body p{font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+  /* ---------- Certificates ---------- */
+  .certs{background:var(--bg-panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .cert-card{
+    border:1px dashed var(--line);background:var(--bg-panel-2);padding:26px 22px;border-radius:2px;
+    display:flex;flex-direction:column;gap:14px;transition:border-color .25s ease;
+  }
+  .cert-card:hover{border-color:var(--blue-bright);}
+  .cert-card .cert-icon{width:34px;height:34px;}
+  .cert-card h4{font-size:14.5px;font-weight:600;}
+  .cert-card .issuer{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-dim);}
+  .cert-card .placeholder-flag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--purple-bright);letter-spacing:0.05em;}
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .testi-card{
+    background:var(--bg-panel-2);border:1px dashed var(--line);padding:32px;border-radius:2px;position:relative;
+  }
+  .testi-card .quote-mark{
+    font-family:'Sora',sans-serif;font-size:52px;font-weight:800;line-height:1;
+    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent;
+    display:block;margin-bottom:6px;
+  }
+  .testi-card p.body{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:22px;font-style:italic;}
+  .testi-person{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{
+    width:40px;height:40px;border-radius:50%;background:var(--grad-diag);
+    display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;color:#fff;flex-shrink:0;
+  }
+  .testi-person .name{font-family:'Sora',sans-serif;font-weight:600;font-size:14px;}
+  .testi-person .role{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-dim);}
+
+  /* ---------- Calendly CTA ---------- */
+  .calendly-cta{
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    background:var(--bg-panel-2);border:1px solid var(--line);padding:26px 30px;border-radius:2px;margin-top:28px;
+  }
+  .calendly-cta .left{display:flex;align-items:center;gap:16px;}
+  .calendly-cta .ico{
+    width:44px;height:44px;border-radius:2px;background:var(--grad-diag);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .calendly-cta h4{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .calendly-cta p{font-size:13px;color:var(--muted);}
+
+  /* ---------- Ideal Client ---------- */
+  .client-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:44px;}
+  .client-card{
+    background:var(--bg-panel-2);border:1px solid var(--line);padding:28px 20px;border-radius:2px;
+    text-align:center;transition:transform .25s ease, border-color .25s ease;
+  }
+  .client-card:hover{transform:translateY(-4px);border-color:var(--purple-bright);}
+  .client-card .ico{
+    width:44px;height:44px;border-radius:50%;margin:0 auto 16px;
+    background:var(--grad-diag);display:flex;align-items:center;justify-content:center;
+  }
+  .client-card .ico svg{width:20px;height:20px;}
+  .client-card h4{font-size:14.5px;font-weight:600;}
+  .client-note{
+    position:relative;background:var(--bg-panel-2);border:1px solid var(--line);border-radius:2px;
+    padding:36px 40px;max-width:100%;
+  }
+  .client-note::before{
+    content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--grad-diag);
+  }
+  .client-note p{font-size:16px;line-height:1.8;color:var(--white);font-style:italic;}
+  .client-note .sig{display:block;margin-top:18px;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:12px;color:var(--muted-dim);}
+
+  /* ---------- Thank You band ---------- */
+  .thankyou{
+    background:var(--grad-diag);position:relative;overflow:hidden;padding:80px 0;
+  }
+  .thankyou::after{
+    content:'';position:absolute;inset:0;background:rgba(5,5,9,0.55);
+  }
+  .thankyou .wrap{position:relative;z-index:1;text-align:center;}
+  .thankyou h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;margin-bottom:16px;color:#fff;}
+  .thankyou p{font-size:16px;color:rgba(255,255,255,0.85);max-width:560px;margin:0 auto 32px;line-height:1.7;}
+  .thankyou-contacts{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13.5px;}
+  .thankyou-contacts a{color:#fff;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:3px;}
+  .thankyou-contacts a:hover{border-color:#fff;}
+
+  .contact{background:var(--bg-panel);position:relative;overflow:hidden;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .contact h2{font-size:clamp(2rem,3.4vw,2.9rem);font-weight:700;line-height:1.12;margin-bottom:22px;letter-spacing:-0.01em;}
+  .contact p.lede{color:var(--muted);font-size:16px;line-height:1.75;margin-bottom:36px;max-width:440px;}
+  .contact-list{display:flex;flex-direction:column;gap:0;}
+  .contact-row{
+    display:flex;align-items:center;gap:16px;padding:20px 0;border-top:1px solid var(--line);
+  }
+  .contact-row:last-child{border-bottom:1px solid var(--line);}
+  .contact-row .ico{
+    width:38px;height:38px;border-radius:2px;display:flex;align-items:center;justify-content:center;
+    background:var(--bg-panel-2);border:1px solid var(--line);flex-shrink:0;
+  }
+  .contact-row .txt .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted-dim);text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:3px;}
+  .contact-row .txt .v{font-size:15px;font-weight:500;}
+  .contact-row a.v:hover{color:var(--purple-bright);}
+
+  .social-panel{
+    background:var(--bg-panel-2);border:1px solid var(--line);padding:44px;border-radius:2px;
+    position:relative;
+  }
+  .social-panel::before{
+    content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--grad-diag);
+  }
+  .social-panel h3{font-size:14px;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+  .social-links{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .social-link{
+    background:var(--bg-panel);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;
+    transition:background .25s ease, padding-left .25s ease;
+  }
+  .social-link:hover{background:var(--bg);padding-left:28px;}
+  .social-link .left{display:flex;align-items:center;gap:14px;}
+  .social-link .name{font-family:'Sora',sans-serif;font-weight:600;font-size:15px;}
+  .social-link .handle{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted-dim);}
+  .social-link svg{width:18px;height:18px;color:var(--muted);}
+  .social-link:hover svg{color:var(--purple-bright);}
+  .arrow{font-family:'JetBrains Mono',monospace;color:var(--muted-dim);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    position:relative;z-index:1;border-top:1px solid var(--line);padding:36px 0;
+  }
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-row .brand-text{font-size:13px;}
+  .footer-row .fine{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted-dim);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .hero-portrait{order:-1;margin-bottom:20px;}
+    .portrait-frame{width:240px;margin:0 auto;}
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .skill-groups{grid-template-columns:1fr;}
+    .process-row{grid-template-columns:repeat(2,1fr);}
+    .portfolio-grid, .certs-grid, .testi-grid{grid-template-columns:1fr 1fr;}
+    .client-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:720px){
+    .nav-links{
+      position:fixed;top:0;right:0;height:100vh;width:72%;
+      background:rgba(5,5,9,0.98);backdrop-filter:blur(16px);
+      flex-direction:column;justify-content:center;align-items:flex-start;
+      padding:0 40px;gap:28px;
+      transform:translateX(100%);transition:transform .35s ease;
+      border-left:1px solid var(--line);
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-toggle{display:flex;}
+    .wrap{padding:0 22px;}
+    .services-grid{grid-template-columns:1fr;}
+    .about-facts{grid-template-columns:1fr;}
+    .process-row{grid-template-columns:1fr;}
+    .hero-meta{gap:24px;}
+    .portfolio-grid, .certs-grid, .testi-grid{grid-template-columns:1fr;}
+    .calendly-cta{flex-direction:column;align-items:flex-start;}
+    .client-grid{grid-template-columns:1fr 1fr;}
+    .client-note{padding:28px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="facets"></canvas>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="#home" class="brand">
+      <img src="JB Design Logo.png" alt="JB Design logo">
+      <span class="brand-text">JEFF <span>BAZAR</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#skills">Skills/Tools</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact" class="nav-cta">Contacts</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Virtual Assistant · Freelancer · Administrative Assistant</div>
+        <h1>Your vision.<br>My expertise.<br><span class="accent">Better results.</span></h1>
+        <p class="lede">I'm Jeff A. Bazar — a Computer Engineering student and freelance Virtual Assistant from Milagros, Masbate, Philippines, who is passionate about helping entrepreneurs, startups, and businesses stay organized, productive, and visually impactful.</p>
+        <div class="hero-ctas">
+          <a href="#services" class="btn btn-primary">See what I do →</a>
+          <a href="#contact" class="btn btn-ghost">Say Hello</a>
+        </div>
+        <div class="hero-meta">
+          <div><span class="num">3rd Year</span><span class="label">Computer Engineering</span></div>
+          <div><span class="num">8</span><span class="label">Core Specialties</span></div>
+          <div><span class="num">Asia · Australia · US</span><span class="label">Based · Remote Ready</span></div>
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <div class="ring"></div>
+          <div class="clip"><img src="Profile Pic.png" alt="Portrait of Jeff A. Bazar"></div>
+        </div>
+        <div class="portrait-tag"><span class="dot"></span> Available for freelance work</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-visual"><img src="JB Design Logo.png" alt="JB Design logo" class="about-logo"></div>
+      <div class="about-copy">
+        <div class="eyebrow">About Me</div>
+        <h2 style="font-size:clamp(1.9rem,3vw,2.5rem);font-weight:700;margin-bottom:22px;letter-spacing:-0.01em;">Design and support, built around how you actually work.</h2>
+        <p>I'm <strong>Jeff A. Bazar</strong>, currently a 3rd year Computer Engineering student at Dr. Emilio B. Espinosa Sr. Memorial State College of Agriculture and Technology. Outside the classroom, I work as a Virtual Assistant and freelancer under my own brand, <strong>JB Design</strong>, helping entrepreneurs, startups, and businesses stay organized, productive, and visually impactful.</p>
+        <p>I got into freelancing because it let me turn a genuine passion into practical skill. What started as curiosity about design and technology became something I kept coming back to — and along the way, I realized I had a real capability for it, one worth sharing with people who could use the support.</p>
+        <p>My technical background, combined with my creativity and attention to detail, lets me provide reliable support so clients can focus on growing their business while I take care of the essentials behind the scenes — from designing brand assets and product interfaces, to building the front-end that brings them to life, to keeping business data accurate, organized, and easy to access.</p>
+        <p>As a lifelong learner, I continuously improve my skills by exploring new design trends, digital tools, and technologies. My goal is to build long-term relationships with clients through dependable support, creative solutions, and excellent service.</p>
+        <div class="about-facts">
+          <div class="fact"><span class="k">Location</span><span class="v">Philippines</span></div>
+          <div class="fact"><span class="k">Studying</span><span class="v">Bachelor of Science in Computer Engineering</span></div>
+          <div class="fact"><span class="k">Availability</span><span class="v">Open to Freelance</span></div>
+          <div class="fact"><span class="k">Works best with</span><span class="v">Startups, Small-Medium Businesses, and Entrepreneurs</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What I Do</div>
+        <h2>Eight ways I help, one workflow.</h2>
+        <p>From the first sketch to the shipped page, and the inbox in between — here's where I add the most value.</p>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="tag">01</span>
+          <div class="bar" style="background:#9333ea;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><path d="M8 32 L28 12 L34 18 L14 38 L6 40 Z" stroke="#c084fc" stroke-width="2" stroke-linejoin="round"/><path d="M24 16 L30 22" stroke="#c084fc" stroke-width="2"/></svg>
+          <h3>Graphic Design</h3>
+          <p>Logos, brand identities, social media kits, and marketing collateral that stay consistent across every touchpoint.</p>
+        </div>
+        <div class="service-card">
+          <span class="tag">02</span>
+          <div class="bar" style="background:#8451eb;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><rect x="6" y="6" width="12" height="12" rx="1.5" stroke="#a78bfa" stroke-width="2"/><rect x="24" y="6" width="12" height="9" rx="1.5" stroke="#a78bfa" stroke-width="2"/><rect x="6" y="24" width="9" height="12" rx="1.5" stroke="#a78bfa" stroke-width="2"/><rect x="21" y="21" width="15" height="15" rx="1.5" stroke="#a78bfa" stroke-width="2"/></svg>
+          <h3>Digital Product Design</h3>
+          <p>Wireframes, UI mockups, and clickable prototypes for apps and websites — grounded in how people actually use them.</p>
+        </div>
+        <div class="service-card">
+          <span class="tag">03</span>
+          <div class="bar" style="background:#6d5df0;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><path d="M15 12 L6 21 L15 30" stroke="#7fa2ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 12 L36 21 L27 30" stroke="#7fa2ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 8 L19 34" stroke="#7fa2ff" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <h3>Front-End Development</h3>
+          <p>Responsive, accessible websites built with clean HTML, CSS, and JavaScript — from static pages to interactive UI.</p>
+        </div>
+        <div class="service-card">
+          <span class="tag">04</span>
+          <div class="bar" style="background:#4f6ffb;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><circle cx="19" cy="19" r="11" stroke="#7fa2ff" stroke-width="2"/><path d="M34 34l-6.5-6.5" stroke="#7fa2ff" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Transcription</h3>
+          <p>Turning calls, meetings, and recordings into clean, accurate written notes.</p>
+        </div>
+        <div class="service-card">
+          <span class="tag">05</span>
+          <div class="bar" style="background:#3b5bfb;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><rect x="8" y="6" width="26" height="30" rx="2" stroke="#7fa2ff" stroke-width="2"/><path d="M14 15h14M14 21h14M14 27h9" stroke="#7fa2ff" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Data Entry</h3>
+          <p>Clean, accurate data entry and database upkeep, so your records stay organized and easy to trust.</p>
+        </div>
+        <div class="service-card">
+          <span class="tag">06</span>
+          <div class="bar" style="background:#3b5bfb;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><rect x="6" y="9" width="30" height="24" rx="2" stroke="#7fa2ff" stroke-width="2"/><path d="M6 13l15 10 15-10" stroke="#7fa2ff" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Email &amp; Calendar Management</h3>
+          <p>Inbox triage, scheduling, and calendar upkeep, so nothing important falls through the cracks.</p>
+        </div>
+        <div class="service-card">
+          <span class="tag">07</span>
+          <div class="bar" style="background:#3455f4;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><circle cx="14" cy="14" r="5" stroke="#7fa2ff" stroke-width="2"/><circle cx="28" cy="28" r="5" stroke="#7fa2ff" stroke-width="2"/><path d="M18 18l6 6" stroke="#7fa2ff" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Social Media Support</h3>
+          <p>Scheduling posts, engaging with your audience, and keeping your profiles active and on-brand.</p>
+        </div>
+        <div class="service-card">
+          <span class="tag">08</span>
+          <div class="bar" style="background:#2d4bee;"></div>
+          <svg class="icon" viewBox="0 0 42 42" fill="none"><rect x="6" y="9" width="30" height="27" rx="3" stroke="#7fa2ff" stroke-width="2"/><path d="M6 17h30M14 5v8M28 5v8" stroke="#7fa2ff" stroke-width="2" stroke-linecap="round"/><path d="M15 26l4 4 8-8" stroke="#7fa2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Appointment Setting</h3>
+          <p>Coordinating and confirming appointments and calls, so your calendar stays full and friction-free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Skills and Tools</div>
+        <h2>Skills I have and tools I reach for daily.</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h4>Soft Skills</h4>
+          <div class="chip-row">
+            <span class="chip">Time Management</span>
+            <span class="chip">Problem-Solving</span>
+            <span class="chip">Adaptability</span>
+            <span class="chip">Clear Communication</span>
+            <span class="chip">Detail-Oriented</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Programming and Tech Stack</h4>
+          <div class="chip-row">
+            <span class="chip">C++</span>
+            <span class="chip">Python</span>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">PHP</span>
+            <span class="chip">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Administrative</h4>
+          <div class="chip-row">
+            <span class="chip">Email Management</span>
+            <span class="chip">Calendar Scheduling</span>
+            <span class="chip">Data Entry</span>
+            <span class="chip">Appointment Setting</span>
+            <span class="chip">Social Media Support</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tools I Use</h4>
+          <div class="chip-row">
+            <span class="chip">Google Workspace</span>
+            <span class="chip">Canva</span>
+            <span class="chip">Trello</span>
+            <span class="chip">Zoom/Google Meet</span>
+            <span class="chip">Google Sheets/Docs/Calendar</span>
+            <span class="chip">Calendly</span>
+            <span class="chip">Notion</span>
+            <span class="chip">Slack</span>
+            <span class="chip">Discord</span>
+            <span class="chip">Visual Studio Code</span>
+            <span class="chip">Sublime Text</span>
+            <span class="chip">XAMPP</span>
+            <span class="chip">Discord</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Portfolio</div>
+        <h2>Sample work &amp; coursework.</h2>
+        <p>A look at recent projects across design, product, and development — built for real clients and real problems.</p>
+      </div>
+      <div class="portfolio-grid">
+        <a href="https://drive.google.com/file/d/1atkbmOmMLaJJ4ptp1EscUCzbfKzLmCAk/view?usp=sharing">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb">
+             <img src="SIMURAI LOGO Final.png" alt="Local Café Brand Identity mockup" 
+         style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="portfolio-body">
+            <span class="cat">BRAND LOGO · GRAPHIC DESIGN</span>
+            <h3>SIMURAI Brand Identity</h3>
+            <p>Concept logo, color palette, and social media designs for personal brand identity.</p>
+          </div>
+        </div>
+        </a>
+        <a href="https://drive.google.com/file/d/1USn_CQRnWVK69e_EMska-cJT6yqepJRj/view?usp=sharing">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb">
+            <img src="First Post SIMURAI.png" alt="SIMURAI Brand Identity mockup" 
+         style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="portfolio-body">
+            <span class="cat">Graphic Design · Social Media Support</span>
+            <h3>SIMURAI Brand Identity</h3>
+            <p>Concept logo, color palette, and social media designs for personal brand identity.</p>
+          </div>
+        </div>
+        </a>
+        <a href="https://drive.google.com/file/d/1OS_fcmIOZkkuHcmZhEpKo7AqX68lYGpD/view?usp=sharing">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb">
+            <img src="Content Calendar - Coursework.png" alt="SIMURAI Brand Identity mockup" 
+         style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="portfolio-body">
+            <span class="cat">Calendar Management · Coursework</span>
+            <h3>Content Calendar Coursework</h3>
+            <p>Manage a client's day-to-day schedule, coordinating meetings and appointments and flagging conflicts before they become a problem.</p>
+          </div>
+        </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section class="certs" id="certificates">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Certificates</div>
+        <h2>Training &amp; credentials.</h2>
+        <p>Certifications and training badges I've completed or am currently working toward.</p>
+      </div>
+      <div class="certs-grid">
+        <a class="cert-card" href="https://drive.google.com/file/d/1zKV-ZpmEWonhfi4KzheyJoLn6n58OHci/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
+          <svg class="cert-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="16" r="9" stroke="#a78bfa" stroke-width="2"/><path d="M15 24 L12 36 L21 31 L30 36 L27 24" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div>
+          <h4>Mind Machines: Engineering Quiz Battle - 3rd PLACE</h4>
+    <span class="issuer">Dr. Emilio B. Espinosa Sr., Memorial State College of Agriculture and Technology - CEngCSC · 2025</span>
+        </div>
+        <span class="placeholder-flag"><img src="3rd Place Recognition.jpg">></span>
+      </a>
+        <a class="cert-card" href="https://drive.google.com/file/d/1EMY7y91kT_tYTUgApWTeJOv8C0voTMOC/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
+          <svg class="cert-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="16" r="9" stroke="#a78bfa" stroke-width="2"/><path d="M15 24 L12 36 L21 31 L30 36 L27 24" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div>
+          <h4>2nd Runner-Up in C++ Programming Competition</h4>
+    <span class="issuer">Institute of Computer Engineers of the Philippines - Student Edition - Bicol Chapter · 2026</span>
+        </div>
+        <span class="placeholder-flag"><img src="2nd Runner-Up Recognition.jpg">></span>
+      </a>
+      <a class="cert-card" href="https://drive.google.com/file/d/1u-zFAXG0xAVXYoR7zWJhGdNlKVIzTTLJ/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
+          <svg class="cert-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="16" r="9" stroke="#a78bfa" stroke-width="2"/><path d="M15 24 L12 36 L21 31 L30 36 L27 24" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div>
+          <h4>Building Trust in Technologu: Machine Learning as the Backbone of Reliable CpE Solutions</h4>
+    <span class="issuer">Insitute of Computer Engineers of the Philippines - Region 9 Chapter · 2026</span>
+        </div>
+        <span class="placeholder-flag"><img src="Region 9 - Cert.jpeg">></span>
+      </a>
+      
+        </div>
+      </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Testimonials</div>
+        <h2>What people say.</h2>
+        <p>Client and mentor feedback will be featured here as projects wrap up.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <span class="quote-mark">"</span>
+          <p class="body">Placeholder testimonial text goes here. Replace with a real quote from a client or mentor describing what it was like to work with you.</p>
+          <div class="testi-person">
+            <div class="testi-avatar">C1</div>
+            <div><span class="name" style="display:block;">Client / Mentor Name</span><span class="role">Role, Company</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <span class="quote-mark">"</span>
+          <p class="body">Placeholder testimonial text goes here. Replace with a real quote highlighting a specific result you delivered.</p>
+          <div class="testi-person">
+            <div class="testi-avatar">C2</div>
+            <div><span class="name" style="display:block;">Client / Mentor Name</span><span class="role">Role, Company</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEAL CLIENT -->
+  <section id="ideal-client">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Who I Work With</div>
+        <h2>Ideal client fit.</h2>
+        <p>I do my best work with people who know their business inside and out and just need an extra pair of hands.</p>
+      </div>
+      <div class="client-grid">
+        <div class="client-card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="#fff" stroke-width="1.8"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h4>Coaches</h4>
+        </div>
+        <div class="client-card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V10l8-6 8 6v10" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20v-6h4v6" stroke="#fff" stroke-width="1.8"/></svg></div>
+          <h4>Startups</h4>
+        </div>
+        <div class="client-card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="8" width="16" height="12" rx="1.5" stroke="#fff" stroke-width="1.8"/><path d="M9 8V6a3 3 0 016 0v2" stroke="#fff" stroke-width="1.8"/></svg></div>
+          <h4>Small - Medium Business Owners</h4>
+        </div>
+        <div class="client-card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h4>Entrepreneurs</h4>
+        </div>
+      </div>
+      <div class="client-note">
+        <p>"I love working with coaches, startups, and small business owners who are great at what they do but stretched thin on everything else. My job is to take design and admin work off your plate so you can stay focused on growing the business — not running it."</p>
+        <span class="sig">— Jeff A. Bazar</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How We'd Work Together</div>
+        <h2>A simple process, start to finish.</h2>
+      </div>
+      <div class="process-row">
+        <div class="process-step">
+          <span class="step-num">01</span>
+          <h4>Discovery</h4>
+          <p>We talk through your goals, audience, and what "done" looks like for this project.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">02</span>
+          <h4>Draft</h4>
+          <p>I put together initial concepts or a first build, and share progress early.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">03</span>
+          <h4>Refine</h4>
+          <p>We go back and forth on feedback until the details feel right.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">04</span>
+          <h4>Deliver</h4>
+          <p>Final files, live site, or handled tasks — ready to use, with support after handoff.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow">Get In Touch</div>
+        <h2>Let's build something worth showing off.</h2>
+        <p class="lede">Whether it's a full brand refresh, a website, or just an extra pair of hands on admin work — send a message and I'll get back to you.</p>
+        <div class="contact-list">
+          <div class="contact-row">
+            <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" stroke="#9a9ab4" stroke-width="1.6"/></svg></div>
+            <div class="txt"><span class="k">Email</span><a class="v">bazarjeff071706@gmail.com</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1C10.6 21 3 13.4 3 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.25 1z" stroke="#9a9ab4" stroke-width="1.6"/></svg></div>
+            <div class="txt"><span class="k">Phone</span><a class="v">0961 945 7095</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z" stroke="#9a9ab4" stroke-width="1.6"/><circle cx="12" cy="9" r="2.4" stroke="#9a9ab4" stroke-width="1.6"/></svg></div>
+            <div class="txt"><span class="k">Location</span><a class="v">Masbate, Philippines</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-panel">
+        <h3>Find me online</h3>
+        <div class="social-links">
+          <a class="social-link" href="https://web.facebook.com/profile.php?id=61592043205275" target="_blank" rel="noopener">
+            <div class="left">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M15 8.5h2V5.5h-2c-2.2 0-3.5 1.4-3.5 3.5v2H9.5V14H11.5v6H14V14h2l.5-3H14V9.2c0-.5.2-.7.8-.7z" fill="currentColor"/></svg>
+              <div><span class="name">Facebook</span><br><span class="handle">/JB Design</span></div>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+          <a class="social-link" href="https://www.instagram.com/jb_designnss/" target="_blank" rel="noopener">
+            <div class="left">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/><circle cx="16.6" cy="7.4" r="1" fill="currentColor"/></svg>
+              <div><span class="name">Instagram</span><br><span class="handle">@jb_designnss</span></div>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/jeff-bazar-3b7304422" target="_blank" rel="noopener">
+            <div class="left">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M7.8 10.2V16.5M7.8 7.7v.01M11.5 16.5v-3.6c0-1.3.8-2.1 2-2.1s1.9.8 1.9 2.1v3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <div><span class="name">LinkedIn</span><br><span class="handle">www.linkedin.com/in/jeffbazar-services</span></div>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+        <a class="calendly-cta" href="https://calendly.com/jbazar_design" target="_blank" rel="noopener">
+          <div class="left">
+            <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <div>
+              <h4>Book a call</h4>
+              <p>Pick a time that works for you on Calendly</p>
+            </div>
+          </div>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- THANK YOU -->
+  <section class="thankyou" id="thank-you">
+    <div class="wrap">
+      <h2>Thank you for stopping by.</h2>
+      <p>I appreciate you taking the time to look through my work. If you have any questions about how I can support your business, don't hesitate to reach out — I'm always happy to chat.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <a href="#home" class="brand-text">JEFF <span style="background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent;">BAZAR</span> · JB DESIGN</a>
+    <span class="fine">© 2026 Jeff A. Bazar. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Faceted triangle ambient background
+  const canvas = document.getElementById('facets');
+  const ctx = canvas.getContext('2d');
+  let W, H, points = [];
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    const count = Math.max(24, Math.floor((W*H)/45000));
+    points = [];
+    for(let i=0;i<count;i++){
+      points.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.12,
+        vy: (Math.random()-0.5)*0.12
+      });
+    }
+  }
+
+  function dist(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // move points
+    points.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+    });
+    // connect nearby points as faceted lines/triangles
+    const maxDist = Math.min(W,H) * 0.16;
+    for(let i=0;i<points.length;i++){
+      for(let j=i+1;j<points.length;j++){
+        const d = dist(points[i], points[j]);
+        if(d < maxDist){
+          const t = 1 - d/maxDist;
+          const grad = ctx.createLinearGradient(points[i].x, points[i].y, points[j].x, points[j].y);
+          grad.addColorStop(0, `rgba(147,51,234,${0.14*t})`);
+          grad.addColorStop(1, `rgba(59,91,251,${0.14*t})`);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(points[i].x, points[i].y);
+          ctx.lineTo(points[j].x, points[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    points.forEach(p=>{
+      ctx.fillStyle = 'rgba(168,85,247,0.5)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.4, 0, Math.PI*2);
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  resize();
+  window.addEventListener('resize', resize);
+  if(!reduceMotion){ draw(); } else {
+    ctx.clearRect(0,0,W,H);
+  }
+</script>
+
+</body>
+</html>
