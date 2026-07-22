@@ -278,15 +278,17 @@
     padding:8px 14px;border-radius:2px;margin-bottom:44px;
   }
   .placeholder-note .dot{width:6px;height:6px;border-radius:50%;background:var(--purple-bright);flex-shrink:0;}
-  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;}
+  .portfolio-grid > a{display:flex;text-decoration:none;color:inherit;}
   .portfolio-card{
     background:var(--bg-panel-2);border:1px solid var(--line);border-radius:2px;overflow:hidden;
     transition:transform .3s ease, border-color .3s ease;
+    display:flex;flex-direction:column;width:100%;height:100%;
   }
   .portfolio-card:hover{transform:translateY(-4px);border-color:var(--purple-bright);}
   .portfolio-thumb{
     aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
+    overflow:hidden;flex-shrink:0;
   }
   .portfolio-thumb::after{
     content:'MOCK / SAMPLE';
@@ -296,10 +298,27 @@
     padding:5px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.2);
   }
   .portfolio-thumb svg{width:44px;height:44px;opacity:0.85;position:relative;z-index:1;}
-  .portfolio-body{padding:22px 24px 26px;}
+  .portfolio-body{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1;min-height:0;}
   .portfolio-body .cat{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-bright);display:block;margin-bottom:10px;}
   .portfolio-body h3{font-size:16px;font-weight:600;margin-bottom:10px;}
-  .portfolio-body p{font-size:13.5px;color:var(--muted);line-height:1.7;}
+  .portfolio-body p{
+    font-size:13.5px;color:var(--muted);line-height:1.7;
+    max-height:130px;overflow-y:auto;padding-right:8px;
+  }
+  .portfolio-body p::-webkit-scrollbar{width:5px;}
+  .portfolio-body p::-webkit-scrollbar-track{background:transparent;}
+  .portfolio-body p::-webkit-scrollbar-thumb{background:var(--purple-bright);border-radius:4px;}
+  .portfolio-body p{scrollbar-width:thin;scrollbar-color:var(--purple-bright) transparent;}
+
+  .see-more-wrap{display:flex;justify-content:center;margin-top:36px;}
+  .see-more-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.05em;text-transform:uppercase;
+    color:#fff;background:var(--grad-diag);padding:13px 26px;border-radius:2px;
+    text-decoration:none;transition:opacity .25s ease, transform .25s ease;
+  }
+  .see-more-btn:hover{opacity:0.88;transform:translateY(-2px);}
+  .see-more-btn svg{width:14px;height:14px;flex-shrink:0;}
 
   /* ---------- Certificates ---------- */
   .certs{background:var(--bg-panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
@@ -497,7 +516,7 @@
       <div>
         <div class="eyebrow">Virtual Assistant · Freelancer · Administrative Assistant</div>
         <h1>Your Vision.<br>My Expertise.<br><span class="accent">Better Results.</span></h1>
-        <p class="lede">I'm Jeff A. Bazar — a Computer Engineering student and freelance Virtual Assistant from Milagros, Masbate, Philippines, who is passionate about helping entrepreneurs, startups, and businesses stay organized, productive, and visually impactful.</p>
+        <p class="lede">I'm Jeff A. Bazar — a Computer Engineering student and freelance Virtual Assistant from Milagros, Masbate, Philippines, who is passionate about helping entrepreneurs, startups, NGOs and businesses stay organized, productive, and visually impactful.</p>
         <div class="hero-ctas">
           <a href="#services" class="btn btn-primary">See what I do →</a>
           <a href="#contact" class="btn btn-ghost">Say Hello</a>
@@ -525,7 +544,7 @@
       <div class="about-copy">
         <div class="eyebrow">About Me</div>
         <h2 style="font-size:clamp(1.9rem,3vw,2.5rem);font-weight:700;margin-bottom:22px;letter-spacing:-0.01em;">Design and support, built around how you actually work.</h2>
-        <p>I'm <strong>Jeff A. Bazar</strong>, currently a 3rd year Computer Engineering student at Dr. Emilio B. Espinosa Sr. Memorial State College of Agriculture and Technology. Outside the classroom, I work as a Virtual Assistant and freelancer under my own brand, <strong>JB Design</strong>, helping entrepreneurs, startups, and businesses stay organized, productive, and visually impactful.</p>
+        <p>I'm <strong>Jeff A. Bazar</strong>, currently a 3rd year Computer Engineering student at Dr. Emilio B. Espinosa Sr. Memorial State College of Agriculture and Technology. Outside the classroom, I work as a Virtual Assistant and freelancer under my own brand, <strong>JB Design</strong>, helping entrepreneurs, startups, NGOs and businesses stay organized, productive, and visually impactful.</p>
         <p>I got into freelancing because it let me turn a genuine passion into practical skill. What started as curiosity about design and technology became something I kept coming back to — and along the way, I realized I had a real capability for it, one worth sharing with people who could use the support.</p>
         <p>My technical background, combined with my creativity and attention to detail, lets me provide reliable support so clients can focus on growing their business while I take care of the essentials behind the scenes — from designing brand assets and product interfaces, to building the front-end that brings them to life, to keeping business data accurate, organized, and easy to access.</p>
         <p>As a lifelong learner, I continuously improve my skills by exploring new design trends, digital tools, and technologies. My goal is to build long-term relationships with clients through dependable support, creative solutions, and excellent service.</p>
@@ -633,6 +652,7 @@
           <div class="chip-row">
             <span class="chip">C++</span>
             <span class="chip">Python</span>
+            <span class="chip">VB.NET</span>
             <span class="chip">HTML</span>
             <span class="chip">CSS</span>
             <span class="chip">JavaScript</span>
@@ -666,6 +686,7 @@
             <span class="chip">Sublime Text</span>
             <span class="chip">XAMPP</span>
             <span class="chip">Discord</span>
+            <span class="chip" style="color: #9333ea ;">More</span>
           </div>
         </div>
       </div>
@@ -682,6 +703,76 @@
         <p>A look at recent projects across design, product, and development — built for real clients and real problems.</p>
       </div>
       <div class="portfolio-grid">
+
+
+        <!--Added-->
+        <a href="https://drive.google.com/drive/folders/1pDc0m9mc1q3K7TCfaeAI7shHArvkgqaX?usp=sharing">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb">
+            <img src="Project Pic2.png" alt="SIMURAI Brand Identity mockup" 
+         style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="portfolio-body">
+            <span class="cat">Front/Back-End Development · Coursework</span>
+            <h3>Class Scheduling System</h3>
+            <p>A VB.NET desktop Class Scheduling System built in my 1st year of college — featuring instructor records management, schedule add/update/search, and a real-time weekly view to prevent time conflicts.</p>
+          </div>
+        </div>
+        </a>
+        <!--Added-->
+        
+        <!--Added-->
+        <a href="https://drive.google.com/drive/folders/1YR-g1-9g_bdPvBXxCUHDbwCO-cPjMUb5?usp=sharing">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb">
+            <img src="iNotify.png" alt="SIMURAI Brand Identity mockup" 
+         style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="portfolio-body">
+            <span class="cat">School Project · Front/Back-End Development</span>
+            <h3>iNotify Class Scheduling System</h3>
+            <p>A comprehensive class scheduling system designed to help educators and administrator manage rooms, schedules, and notifications with ease.</p>
+          </div>
+        </div>
+        </a>
+        <!--Added-->
+
+        
+
+        
+        <a href="https://drive.google.com/file/d/1OS_fcmIOZkkuHcmZhEpKo7AqX68lYGpD/view?usp=sharing">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb">
+            <img src="Content Calendar - Coursework.png" alt="SIMURAI Brand Identity mockup" 
+         style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="portfolio-body">
+            <span class="cat">Calendar Management · Coursework</span>
+            <h3>Google Content Calendar </h3>
+            <p>Manage a client's day-to-day schedule, coordinating meetings and appointments and flagging conflicts before they become a problem.</p>
+          </div>
+        </div>
+        </a>
+        
+
+        
+        
+        <a href="https://drive.google.com/file/d/18k45DAZx7pDMg04s7y1xtTqKJJlbDJQ0/view?usp=sharing">
+        <div class="portfolio-card">
+          <div class="portfolio-thumb">
+            <img src="Notion Content Calendar.png" alt="SIMURAI Brand Identity mockup" 
+         style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="portfolio-body">
+            <span class="cat">Calendar Management · Coursework</span>
+            <h3>Notion Content Calendar</h3>
+            <p>Set up and manage Notion workspaces for clients — organizing tasks, databases, and workflows to keep their business running smoothly.</p>
+          </div>
+        </div>
+        </a>
+
+
+        
         <a href="https://drive.google.com/file/d/1atkbmOmMLaJJ4ptp1EscUCzbfKzLmCAk/view?usp=sharing">
         <div class="portfolio-card">
           <div class="portfolio-thumb">
@@ -708,20 +799,17 @@
           </div>
         </div>
         </a>
-        <a href="https://drive.google.com/file/d/1OS_fcmIOZkkuHcmZhEpKo7AqX68lYGpD/view?usp=sharing">
-        <div class="portfolio-card">
-          <div class="portfolio-thumb">
-            <img src="Content Calendar - Coursework.png" alt="SIMURAI Brand Identity mockup" 
-         style="width:100%;height:100%;object-fit:cover;">
-          </div>
-          <div class="portfolio-body">
-            <span class="cat">Calendar Management · Coursework</span>
-            <h3>Content Calendar Coursework</h3>
-            <p>Manage a client's day-to-day schedule, coordinating meetings and appointments and flagging conflicts before they become a problem.</p>
-          </div>
-        </div>
+
+      </div>
+
+      <div class="see-more-wrap">
+        <!-- TODO: replace # with your Portfolio Google Drive folder link -->
+        <a class="see-more-btn" href="https://drive.google.com/drive/folders/14icIT0ehJDKW2RgExcvGQGVkdnn6vZ55?usp=sharing" target="_blank" rel="noopener">
+          See More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
+
     </div>
   </section>
 
@@ -753,13 +841,51 @@
       <a class="cert-card" href="https://drive.google.com/file/d/1u-zFAXG0xAVXYoR7zWJhGdNlKVIzTTLJ/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
           <svg class="cert-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="16" r="9" stroke="#a78bfa" stroke-width="2"/><path d="M15 24 L12 36 L21 31 L30 36 L27 24" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/></svg>
             <div>
-          <h4>Building Trust in Technologu: Machine Learning as the Backbone of Reliable CpE Solutions</h4>
+          <h4>Building Trust in Technology: Machine Learning as the Backbone of Reliable CpE Solutions</h4>
     <span class="issuer">Insitute of Computer Engineers of the Philippines - Region 9 Chapter · 2026</span>
         </div>
         <span class="placeholder-flag"><img src="Region 9 - Cert.jpeg">></span>
       </a>
+
+      <!--Added-->
+      <a class="cert-card" href="https://drive.google.com/file/d/1_sVpF2VhwYgk-ckHaRT9qdLJ6ZeP2X7A/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
+          <svg class="cert-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="16" r="9" stroke="#a78bfa" stroke-width="2"/><path d="M15 24 L12 36 L21 31 L30 36 L27 24" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div>
+          <h4>Fundamentals of Marketing Analysis</h4>
+    <span class="issuer">Semrush Academy · 2026</span>
+        </div>
+        <span class="placeholder-flag"><img src="Fundamentals of Marketing Analysis.png">></span>
+      </a>
+
+      <a class="cert-card" href="https://drive.google.com/file/d/1b_sEp4Fmqs_QkgjIE0CraBwKTm4TOhfN/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
+          <svg class="cert-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="16" r="9" stroke="#a78bfa" stroke-width="2"/><path d="M15 24 L12 36 L21 31 L30 36 L27 24" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div>
+          <h4>Influencer Marketing Campaigns for Beginners</h4>
+    <span class="issuer">Semrush Academy · 2026</span>
+        </div>
+        <span class="placeholder-flag"><img src="Influencer Marketing Campaigns for Beginners.png">></span>
+      </a>
+
+      <a class="cert-card" href="https://drive.google.com/file/d/1IeE-xnDfQN9iH-MCR8yn1akDI40RlHNL/view?usp=sharing" target="_blank" rel="noopener" style="text-decoration:none;">
+          <svg class="cert-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="16" r="9" stroke="#a78bfa" stroke-width="2"/><path d="M15 24 L12 36 L21 31 L30 36 L27 24" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div>
+          <h4>Become an AI-Powered Marketer</h4>
+    <span class="issuer">Semrush Academy · 2026</span>
+        </div>
+        <span class="placeholder-flag"><img src="Become an AI-Pwered Marketer.png">></span>
+      </a>
+      <!--Added-->
       
         </div>
+
+        <div class="see-more-wrap">
+          <!-- TODO: replace # with your Certificates Google Drive folder link -->
+          <a class="see-more-btn" href="https://drive.google.com/drive/folders/19vt8oiMhE7ua8cqaiTCnbezuVN0u-dAh?usp=sharing" target="_blank" rel="noopener">
+            See More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
       </div>
   </section>
 
@@ -803,11 +929,11 @@
       <div class="client-grid">
         <div class="client-card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="#fff" stroke-width="1.8"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <h4>Coaches</h4>
+          <h4>Startups</h4>
         </div>
         <div class="client-card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V10l8-6 8 6v10" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20v-6h4v6" stroke="#fff" stroke-width="1.8"/></svg></div>
-          <h4>Startups</h4>
+          <h4>NGOs</h4>
         </div>
         <div class="client-card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="8" width="16" height="12" rx="1.5" stroke="#fff" stroke-width="1.8"/><path d="M9 8V6a3 3 0 016 0v2" stroke="#fff" stroke-width="1.8"/></svg></div>
@@ -819,7 +945,7 @@
         </div>
       </div>
       <div class="client-note">
-        <p>"I love working with coaches, startups, and small business owners who are great at what they do but stretched thin on everything else. My job is to take design and admin work off your plate so you can stay focused on growing the business — not running it."</p>
+        <p>"I love working with startups, NGOs, and small business owners who are great at what they do but stretched thin on everything else. My job is to take design and admin work off your plate so you can stay focused on growing the business — not running it."</p>
         <span class="sig">— Jeff A. Bazar</span>
       </div>
     </div>
@@ -871,7 +997,7 @@
           </div>
           <div class="contact-row">
             <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8a15.5 15.5 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1C10.6 21 3 13.4 3 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.25 1z" stroke="#9a9ab4" stroke-width="1.6"/></svg></div>
-            <div class="txt"><span class="k">Phone</span><a class="v">0961 945 7095</a></div>
+            <div class="txt"><span class="k">Whatsapp Number</span><a class="v">+63 961 945 7095</a></div>
           </div>
           <div class="contact-row">
             <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z" stroke="#9a9ab4" stroke-width="1.6"/><circle cx="12" cy="9" r="2.4" stroke="#9a9ab4" stroke-width="1.6"/></svg></div>
